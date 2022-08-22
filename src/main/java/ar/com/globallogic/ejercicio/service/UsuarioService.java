@@ -128,7 +128,7 @@ public class UsuarioService {
 
         usuario.setLastLogin(LocalDateTime.now());
 
-        response.setPassword(request.getPassword());
+        response.setPassword(usuario.getPassword());
         response.setName(usuario.getName());
         response.setIsActive(usuario.getIsActive());
         response.setPhones(phoneMapper.toDtos(usuario.getPhones()));
