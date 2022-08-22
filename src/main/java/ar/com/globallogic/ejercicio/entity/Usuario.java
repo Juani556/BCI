@@ -1,6 +1,5 @@
 package ar.com.globallogic.ejercicio.entity;
 
-import jdk.vm.ci.meta.Local;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;

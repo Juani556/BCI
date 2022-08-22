@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Data
 public class SignUpResponseDto {
@@ -14,7 +13,7 @@ public class SignUpResponseDto {
     @JsonFormat(pattern = "MMM dd, yyyy hh:mm:ss")
     private LocalDateTime created;
 
-    @JsonFormat(pattern = "MMMM dd, yyyy hh:mm:ss")
+    @JsonFormat(pattern = "MMM dd, yyyy hh:mm:ss")
     private LocalDateTime lastLogin;
 
     private String token;

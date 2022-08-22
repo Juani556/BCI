@@ -3,10 +3,7 @@ package ar.com.globallogic.ejercicio.helper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
 import java.security.SecureRandom;
-import java.security.spec.KeySpec;
 
 @Component
 public class Properties {
