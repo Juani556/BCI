@@ -107,7 +107,6 @@ public class UsuarioService {
         if (request.getPassword() != null) {
             try {
                 String loginPassword = encodePassword(request.getPassword());
-                System.out.println(loginPassword);
                 if (!loginPassword.equals(usuario.getPassword())) {
                     throw new PasswordNotValidException();
                 }
