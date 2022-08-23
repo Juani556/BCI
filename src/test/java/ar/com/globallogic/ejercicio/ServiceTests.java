@@ -21,6 +21,7 @@ import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -36,6 +37,8 @@ public class ServiceTests {
     private ObjectMapper objectMapper;
 
     private UsuarioRepository repository;
+
+    private
 
     @BeforeAll
     void  setUp() {
@@ -91,6 +94,31 @@ public class ServiceTests {
         Assertions.assertEquals(usuario.getId().toString(), responseDto.getId());
         Assertions.assertNotNull(responseDto.getToken());
 
+    }
+
+    @Test
+    void testLogin_NoPasswordSent() throws Exception {
+
+        LoginRequestDto requestDto = new LoginRequestDto();
+        requestDto.setEmail("prueba@mail.com");
+
+        Algorithm algorithm = Algorithm.HMAC256("Secret");
+
+        String token = JWT.create()
+                        .withIssuer("GlobalLogic")
+                .withExpiresAt(new Date(new Date().getTime() + 60000)).sign(algorithm);
+
+        Usuario usuario = new Usuario();
+        usuario.setId(UUID.fromString("a903eceb-b3d0-49d4-b6f7-f65d8eb75c21"));
+        usuario.setPassword(JsonExamples.PASSWORD_SAMPLE);
+        usuario.setPhones(new ArrayList<>());
+
+        when(repository.findByEmail(anyString())).thenReturn(Optional.of(usuario));
+
+        LoginResponseDto responseDto = usuarioService.login(requestDto, token);
+
+        Assertions.assertEquals(usuario.getId().toString(), responseDto.getId());
+        Assertions.assertNotEquals(responseDto.getToken(), token);
     }
 
 }
